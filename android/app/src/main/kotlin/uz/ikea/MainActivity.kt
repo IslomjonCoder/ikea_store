@@ -1,4 +1,4 @@
-package com.example.ikea_store
+package uz.ikea
 
 import io.flutter.embedding.android.FlutterActivity
 

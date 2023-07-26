@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "171594880252",
+    "project_id": "ikea-3ed76",
+    "storage_bucket": "ikea-3ed76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171594880252:android:7de3826d6499686863f379",
+        "android_client_info": {
+          "package_name": "uz.ikea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171594880252-ubkl5d3ci0o9090od5j2d8cb1mcpakl7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbj_gByw9j68t8m9214fhafBnNJhxUSyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171594880252-ubkl5d3ci0o9090od5j2d8cb1mcpakl7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
