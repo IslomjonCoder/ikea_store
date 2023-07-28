@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikea_store/ui/widgets/custom_button.dart';
 
 import 'package:ikea_store/utils/images.dart';
+import 'package:ikea_store/utils/routes.dart';
 import 'package:ikea_store/utils/style.dart';
 
-class AuthScreen extends StatelessWidget {
-  const AuthScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,17 @@ class AuthScreen extends StatelessWidget {
                 children: [
                   CustomButton(
                     name: 'Login',
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.login);
+                    },
                   ),
+                  SizedBox(height: 15.h),
                   CustomButton(
                     outline: true,
                     name: 'Register',
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.signup);
+                    },
                   ),
                 ],
               ),

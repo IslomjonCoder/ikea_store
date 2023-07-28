@@ -7,19 +7,21 @@ class CustomButton extends StatelessWidget {
     super.key,
     this.outline = false,
     required this.name,
+    required this.onTap,
   });
 
   final bool outline;
   String name;
+  VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 56,
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      // margin: const EdgeInsets.symmetric(vertical: 8),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onTap,
           style: ElevatedButton.styleFrom(
             backgroundColor: outline ? AppColors.white : AppColors.dark,
             shape: RoundedRectangleBorder(

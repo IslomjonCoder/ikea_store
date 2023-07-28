@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
-import 'package:ikea_store/utils/colors.dart';
 
 class AppStyle {
   static TextStyle display4 = GoogleFonts.poppins(
