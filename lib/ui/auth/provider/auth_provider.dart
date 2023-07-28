@@ -25,9 +25,9 @@ class AuthProvider extends ChangeNotifier {
       notify();
       if (status == AuthResultStatus.successful) {
         print('Succesfull sign up');
-
-        Navigator.pushNamedAndRemoveUntil(
-            context, RouteNames.home, (route) => false);
+        Navigator.pop(context);
+        // Navigator.pushNamedAndRemoveUntil(
+        //     context, RouteNames.home, (route) => false);
       } else {
         errorMessage = AuthExceptionHandler.generateExceptionMessage(status);
         ScaffoldMessenger.of(context)
@@ -45,8 +45,10 @@ class AuthProvider extends ChangeNotifier {
     notify();
     print(status.name);
     if (status == AuthResultStatus.successful) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, RouteNames.home, (route) => false);
+      Navigator.pop(context);
+      print('Navigate to homescreen');
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, RouteNames.home, (route) => false);
       // Navigate to Home Screen
     } else {
       errorMessage = AuthExceptionHandler.generateExceptionMessage(status);
@@ -59,8 +61,8 @@ class AuthProvider extends ChangeNotifier {
     AuthResultStatus status = await _authHelper.logout();
     print(status.name);
     if (status == AuthResultStatus.successful) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, RouteNames.welcome, (route) => false);
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, RouteNames.welcome, (route) => false);
       // Navigate to Home Screen
     } else {
       errorMessage = AuthExceptionHandler.generateExceptionMessage(status);
@@ -74,8 +76,9 @@ class AuthProvider extends ChangeNotifier {
     AuthResultStatus status = await _authHelper.signInWithGoogle();
     print(status.name);
     if (status == AuthResultStatus.successful) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, RouteNames.home, (route) => false);
+      Navigator.pop(context);
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, RouteNames.home, (route) => false);
       // Navigate to Home Screen
     } else {
       errorMessage = AuthExceptionHandler.generateExceptionMessage(status);

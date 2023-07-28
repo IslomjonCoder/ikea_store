@@ -61,8 +61,10 @@ class FirebaseAuthHelper {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
+
       print('ok4');
       await FirebaseAuth.instance.signInWithCredential(credential);
+
       print('ok5');
       _status = AuthResultStatus.successful;
     } on FirebaseAuthException catch (error) {
