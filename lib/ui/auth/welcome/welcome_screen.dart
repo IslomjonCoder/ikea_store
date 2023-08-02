@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ikea_store/ui/widgets/custom_button.dart';
+import 'package:ikea_store/ui/widgets/universal_widget/custom_button.dart';
 
 import 'package:ikea_store/utils/images.dart';
 import 'package:ikea_store/utils/routes.dart';
@@ -14,9 +14,11 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(AppImages.backgroundSmall),
-                fit: BoxFit.cover)),
+          image: DecorationImage(
+            image: AssetImage(AppImages.backgroundSmall),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
@@ -42,11 +44,12 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Continue as a guest',
-                  style: AppStyle.subtitle2,
-                ))
+              onPressed: () {},
+              child: Text(
+                'Continue as a guest',
+                style: AppStyle.subtitle2,
+              ),
+            )
           ],
         ),
       ),

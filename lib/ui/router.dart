@@ -19,39 +19,18 @@ class _RouterAppState extends State<RouterApp> {
   @override
   void initState() {
     super.initState();
-    // Subscribe to auth state changes and save the subscription.
-    _authStateSubscription =
-        FirebaseAuth.instance.authStateChanges().listen((event) {
-      updateUserState(event);
-    });
+
+    _authStateSubscription = FirebaseAuth.instance.authStateChanges().listen(updateUserState);
   }
 
   @override
   void dispose() {
-    // Unsubscribe from the stream when the widget is disposed.
     _authStateSubscription?.cancel();
     super.dispose();
   }
 
-  updateUserState(event) {
-    print('User yangilandi -----------------------------');
-    print(user == null);
-    if (user == null) {
-      print('user null');
-    } else {
-      print('user null emas');
-    }
-
-    setState(() {
-      user = event;
-    });
-
-    print('user o`zgardi');
-    print(user == null);
-  }
+  updateUserState(e) => setState(() => user = e);
 
   @override
-  Widget build(BuildContext context) {
-    return (user == null) ? WelcomeScreen() : HomeScreen();
-  }
+  Widget build(BuildContext context) => (user == null) ? const WelcomeScreen() : const HomeScreen();
 }

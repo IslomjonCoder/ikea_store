@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ikea_store/ui/auth/sign%20in/login_screen.dart';
-import 'package:ikea_store/ui/widgets/forget_button.dart';
-import 'package:ikea_store/ui/widgets/universal_input_widget.dart';
+
+import 'package:ikea_store/ui/widgets/auth_widgets/forget_button.dart';
+import 'package:ikea_store/ui/widgets/universal_widget/universal_input_widget.dart';
 
 class RegistrationPart extends StatelessWidget {
   RegistrationPart({

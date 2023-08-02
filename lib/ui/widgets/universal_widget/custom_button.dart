@@ -4,10 +4,10 @@ import 'package:ikea_store/utils/style.dart';
 
 class CustomButton extends StatelessWidget {
   CustomButton({
-    super.key,
-    this.outline = false,
     required this.name,
     required this.onTap,
+    this.outline = false,
+    super.key,
   });
 
   final bool outline;
@@ -15,27 +15,29 @@ class CustomButton extends StatelessWidget {
   VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 56,
-      width: double.infinity,
-      // margin: const EdgeInsets.symmetric(vertical: 8),
-      child: ElevatedButton(
+  Widget build(BuildContext context) => SizedBox(
+        height: 56,
+        width: double.infinity,
+        // margin: const EdgeInsets.symmetric(vertical: 8),
+        child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
             backgroundColor: outline ? AppColors.white : AppColors.dark,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-                side: BorderSide(
-                    color: outline ? AppColors.dark : const Color(0xFF000000))),
+              borderRadius: BorderRadius.circular(8),
+              side: BorderSide(
+                color: outline ? AppColors.dark : const Color(0xFF000000),
+              ),
+            ),
           ),
           child: Text(
             name,
             style: AppStyle.body1.copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: outline ? AppColors.dark : AppColors.white),
-          )),
-    );
-  }
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: outline ? AppColors.dark : AppColors.white,
+            ),
+          ),
+        ),
+      );
 }
