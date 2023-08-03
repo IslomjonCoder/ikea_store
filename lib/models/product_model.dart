@@ -8,13 +8,13 @@ class ProductModel {
   String categoryId;
 
   ProductModel({
-    this.id = '',
     required this.name,
-    this.imageUrl = '',
     required this.description,
     required this.price,
-    this.count = 100,
     required this.categoryId,
+    this.id = '',
+    this.imageUrl = '',
+    this.count = 100,
   });
 
   ProductModel copyWith({

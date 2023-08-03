@@ -12,7 +12,7 @@ abstract class DbApi {
 
   Future<Result> deleteCategory(CategoryModel category);
 
-  Stream<Result<List<CategoryModel>>> getCategoryList();
+  Stream<List<CategoryModel>> getCategoryList();
 
   Future<Result<List<CategoryModel>>> getCategoriesListSingle();
 
@@ -23,9 +23,9 @@ abstract class DbApi {
 
   Future<Result> addProduct(ProductModel product, File imageFile);
 
-  Future<Result> updateProduct(ProductModel product);
+  Future<Result> updateProduct(ProductModel product, File imageFile);
 
   Future<Result> deleteProduct(ProductModel product);
 
-  Stream<Result<List<ProductModel>>> getProductList();
+  Stream<List<ProductModel>> getProductList();
 }

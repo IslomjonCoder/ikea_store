@@ -10,6 +10,8 @@
 include: package:flutter_lints/flutter.yaml
 
 linter:
+
+
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
   # included above or to enable additional rules. A list of all available lints
@@ -21,8 +23,10 @@ linter:
   # or a specific dart file by using the `// ignore: name_of_lint` and
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
-#  rules:
-#    - require_trailing_commas
+  rules:
+#    - always_specify_types
+    - always_put_required_named_parameters_first
+    - require_trailing_commas
 #    - always_declare_return_types
 #    - list_remove_unrelated_type
 #    - always_declare_return_types

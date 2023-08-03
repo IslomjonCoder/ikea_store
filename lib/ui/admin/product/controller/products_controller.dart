@@ -1,110 +1,61 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ikea_store/models/category_model.dart';
 import 'package:ikea_store/models/product_model.dart';
 import 'package:ikea_store/service/storage_service/db_firestore.dart';
 import 'package:ikea_store/utils/ui_utils/loadings.dart';
+import 'package:uuid/uuid.dart';
 
 class ProductsState {
   static List<ProductModel> products = [];
-  static String productName = '';
-  static String description = '';
-  static double price = 0;
-  static String categoryID = '';
-  static List<CategoryModel> categories = [];
-  static File? imageFile;
 }
 
-class AdminProductsController extends ChangeNotifier {
+class ProductProvider extends ChangeNotifier {
   final DbFirestoreService _dbFirestoreService = DbFirestoreService();
-  ProductsState state = ProductsState();
+  Uuid uuid = const Uuid();
 
-  AdminProductsController() {
-    listenToProductsStream();
+  addProduct(BuildContext context, ProductModel product, File imageFile) async {
+    product = product.copyWith(id: uuid.v4());
+    LoaderDialog.showLoadingDialog(context);
+    await _dbFirestoreService.addProduct(product, imageFile);
+    LoaderDialog.hideLoadingDialog(context);
+    Navigator.pop(context);
   }
 
-  List<CategoryModel> get getCategories => ProductsState.categories;
-
-  late Stream<List<ProductModel>> productsStream;
-
-  void listenToProductsStream() async {
-    productsStream = _dbFirestoreService
-        .getProductList()
-        .map((result) => (result.isSuccess) ? result.data! : []);
-    categories = (await _dbFirestoreService.getCategoriesListSingle()).data;
-    notifyListeners();
+  addCategory(BuildContext context, CategoryModel category, File imageFile) async {
+    category = category.copyWith(id: uuid.v4());
+    LoaderDialog.showLoadingDialog(context);
+    await _dbFirestoreService.addCategory(category, imageFile);
+    LoaderDialog.hideLoadingDialog(context);
+    Navigator.pop(context);
   }
 
-  // Getter for products
-  List<ProductModel> get products => ProductsState.products;
-
-  // Setter for products
-  set products(List<ProductModel> newProducts) {
-    ProductsState.products = newProducts;
+  deleteProduct(BuildContext context, ProductModel product) async {
+    LoaderDialog.showLoadingDialog(context);
+    await _dbFirestoreService.deleteProduct(product);
+    LoaderDialog.hideLoadingDialog(context);
+    Navigator.pop(context);
   }
 
-  // Getter and Setter for productName
-  String get productName => ProductsState.productName;
-
-  set productName(String newProductName) {
-    ProductsState.productName = newProductName;
+  deleteCategory(BuildContext context, CategoryModel category) async {
+    await _dbFirestoreService.deleteCategory(category);
   }
 
-  // Getter and Setter for description
-  String get description => ProductsState.description;
-
-  set description(String newDescription) {
-    ProductsState.description = newDescription;
+  updateProduct(BuildContext context, ProductModel product, File? imageFile) async {
+    LoaderDialog.showLoadingDialog(context);
+    await _dbFirestoreService.updateProduct(product, imageFile);
+    LoaderDialog.hideLoadingDialog(context);
+    Navigator.pop(context);
+    Navigator.pop(context);
   }
 
-  // Getter and Setter for price
-  double get price => ProductsState.price;
-
-  set price(double newPrice) {
-    ProductsState.price = newPrice;
-  }
-
-  File? get imageFile => ProductsState.imageFile;
-
-  set imageFile(File? newImage) {
-    ProductsState.imageFile = newImage;
-    notifyListeners();
-  }
-
-  // Getter and Setter for categoryID
-  String get categoryID => ProductsState.categoryID;
-
-  set categoryID(String newCategoryID) {
-    ProductsState.categoryID = newCategoryID;
-  }
-
-  // Getter and Setter for categories
-  List<CategoryModel> get categories => ProductsState.categories;
-
-  set categories(List<CategoryModel> newCategories) {
-    ProductsState.categories = newCategories;
-  }
-
-  addProduct(BuildContext context) async {
-    print([productName, categoryID, description, price]);
-    showLoading(context);
-    await _dbFirestoreService.addProduct(
-        ProductModel(
-            name: productName, description: description, price: price, categoryId: categoryID),
-        imageFile);
-    hideLoading(context);
-    reset();
-  }
-
-  void reset() {
-    products = [];
-    productName = '';
-    description = '';
-    price = 0;
-    categoryID = '';
-    categories = [];
-    imageFile = null;
+  updateCategory(BuildContext context, CategoryModel category, File? imageFile) async {
+    LoaderDialog.showLoadingDialog(context);
+    await _dbFirestoreService.updateCategory(category, imageFile);
+    LoaderDialog.hideLoadingDialog(context);
+    Navigator.pop(context);
+    // Navigator.pop(context);
+    // Navigator.popUntil(context, ModalRoute.withName(RouteNames.admin));
   }
 }

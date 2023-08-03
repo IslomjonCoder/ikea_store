@@ -27,14 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.bookmark),
             title: const Text('Favourites'),
           ),
-          FlashyTabBarItem(
-            icon: const Icon(Icons.settings),
-            title: const Text('Settings'),
-          ),
-          FlashyTabBarItem(
-            icon: const Icon(Icons.person),
-            title: const Text('Admin'),
-          ),
+          // FlashyTabBarItem(
+          //   icon: const Icon(Icons.settings),
+          //   title: const Text('Settings'),
+          // ),
+          // FlashyTabBarItem(
+          //   icon: const Icon(Icons.person),
+          //   title: const Text('Admin'),
+          // ),
         ],
         selectedIndex: provider.selected,
         onItemSelected: (int value) => provider.setSelect = value,

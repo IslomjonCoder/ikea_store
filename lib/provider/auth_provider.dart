@@ -20,83 +20,56 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> createAccount(context) async {
     if (_confirmPassword()) {
-      showLoading(context);
+      LoaderDialog.showLoadingDialog(context);
       final Result result =
           await _authService.createUserWithEmailAndPassword(email, password, name);
-      hideLoading(context);
+      LoaderDialog.hideLoadingDialog(context);
       if (result.isSuccess) {
         reset();
         Navigator.pop(context);
       } else if (result.isFail) {
         errorMessage = result.errorMessage!;
-        showError(context);
+        LoaderDialog.showError(context, errorMessage);
       }
     } else {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Please confirm password')));
+          .showSnackBar(const SnackBar(content: Text('Please confirm password')));
     }
   }
 
   Future<void> login(BuildContext context) async {
-    showLoading(context);
+    LoaderDialog.showLoadingDialog(context);
     final Result result = await _authService.login(email, password);
-    hideLoading(context);
+    LoaderDialog.hideLoadingDialog(context);
     if (result.isSuccess) {
-      // user = FirebaseAuth.instance.currentUser;
       reset();
       Navigator.pop(context);
     } else {
       errorMessage = result.errorMessage!;
-      showError(context);
+      LoaderDialog.showError(context, errorMessage);
     }
   }
 
-  Future<void> showError(BuildContext context, [String error = '']) => showDialog(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Error'),
-          content: Text((error.isEmpty) ? errorMessage : error),
-        ),
-      );
-
   Future<void> logout(BuildContext context) async {
-    showLoading(context);
+    LoaderDialog.showLoadingDialog(context);
     final Result result = await _authService.logout();
-    hideLoading(context);
+    LoaderDialog.hideLoadingDialog(context);
 
-    if (result.isSuccess) {
-    } else {
+    if (result.isFail) {
       errorMessage = result.errorMessage!;
-      showError(context);
+      LoaderDialog.showError(context, errorMessage);
     }
   }
 
   Future<void> loginWithGoogle(context) async {
-    showLoading(context);
+    LoaderDialog.showLoadingDialog(context);
     final Result result = await _authService.signInWithGoogle();
-    hideLoading(context);
+    LoaderDialog.hideLoadingDialog(context);
     if (result.isSuccess) {
-      user = FirebaseAuth.instance.currentUser;
-      notifyListeners();
       Navigator.pop(context);
     } else {
       errorMessage = result.errorMessage!;
-      showError(context);
-    }
-  }
-
-  Future<void> changeUserInfo(context) async {
-    showLoading(context);
-    final Result result = await _authService.updateUserInfo(name, email);
-    hideLoading(context);
-    if (result.isSuccess) {
-      reset();
-      // user = FirebaseAuth.instance.currentUser;
-      notifyListeners();
-      Navigator.pop(context);
-    } else {
-      errorMessage = result.errorMessage!;
-      showError(context);
+      LoaderDialog.showError(context, errorMessage);
     }
   }
 

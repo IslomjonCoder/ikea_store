@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ikea_store/ui/admin/admin_page.dart';
 import 'package:ikea_store/ui/auth/welcome/welcome_screen.dart';
 import 'package:ikea_store/ui/home_screen.dart';
 
@@ -19,7 +20,6 @@ class _RouterAppState extends State<RouterApp> {
   @override
   void initState() {
     super.initState();
-
     _authStateSubscription = FirebaseAuth.instance.authStateChanges().listen(updateUserState);
   }
 
@@ -29,8 +29,19 @@ class _RouterAppState extends State<RouterApp> {
     super.dispose();
   }
 
-  updateUserState(e) => setState(() => user = e);
+  updateUserState(e) {
+    setState(() {
+      user = e;
+    });
+    print(user?.email);
+  }
 
   @override
-  Widget build(BuildContext context) => (user == null) ? const WelcomeScreen() : const HomeScreen();
+  Widget build(BuildContext context) {
+    return (user == null)
+        ? const WelcomeScreen()
+        : (user!.email == 'email@gmail.com')
+            ? const AdminScreen()
+            : const HomeScreen();
+  }
 }

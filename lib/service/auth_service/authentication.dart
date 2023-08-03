@@ -36,24 +36,29 @@ class AuthenticationService implements AuthenticationApi {
 
   @override
   Future<Result> createUserWithEmailAndPassword(
-      String email, String password, String username) async {
+    String email,
+    String password,
+    String username,
+  ) async {
     try {
       UserCredential newUser =
           await _auth.createUserWithEmailAndPassword(email: email, password: password);
       final user = newUser.user!;
       final snapshot = await _firestore.collection(_collectionUsers).doc(user.uid).get();
       if (!snapshot.exists) {
-        await Future.wait([
-          user.updateDisplayName(username),
-          _firestore.collection(_collectionUsers).doc(user.uid).set({
-            "id": user.uid,
-            'email': user.email,
-            'phone_number': user.phoneNumber,
-            'photo_url': user.photoURL,
-            "created_at": user.metadata.creationTime,
-            'username': username,
-          })
-        ].whereType<Future<void>>().toList());
+        await Future.wait(
+          [
+            user.updateDisplayName(username),
+            _firestore.collection(_collectionUsers).doc(user.uid).set({
+              "id": user.uid,
+              'email': user.email,
+              'phone_number': user.phoneNumber,
+              'photo_url': user.photoURL,
+              "created_at": user.metadata.creationTime,
+              'username': username,
+            })
+          ].whereType<Future<void>>().toList(),
+        );
       }
       return Result.success(null);
     } on FirebaseAuthException catch (error) {
@@ -98,11 +103,12 @@ class AuthenticationService implements AuthenticationApi {
   @override
   Future<Result> updateUserInfo(String newUsername, String newEmail) async {
     try {
-      print(_auth.currentUser?.displayName ?? 'Empty');
-      await Future.wait([
-        _auth.currentUser?.updateEmail(newEmail),
-        _auth.currentUser?.updateDisplayName(newUsername)
-      ].whereType<Future<void>>().toList());
+      await Future.wait(
+        [
+          _auth.currentUser?.updateEmail(newEmail),
+          _auth.currentUser?.updateDisplayName(newUsername)
+        ].whereType<Future<void>>().toList(),
+      );
 
       return Result.success(null);
     } on FirebaseAuthException catch (error) {
