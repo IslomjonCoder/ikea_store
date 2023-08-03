@@ -4,6 +4,7 @@
         android:label="ikea_store"
         android:usesCleartextTraffic="true"
         android:name="${applicationName}"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

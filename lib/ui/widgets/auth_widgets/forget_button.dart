@@ -12,13 +12,16 @@ class ForgetButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-          onPressed: () {},
-          child: Text(
-            'Forgot Password?',
-            textAlign: TextAlign.right,
-            style: AppStyle.body2.copyWith(
-                fontWeight: FontWeight.w600, color: AppColors.c6A707C),
-          )),
+        onPressed: () {},
+        child: Text(
+          'Forgot Password?',
+          textAlign: TextAlign.right,
+          style: AppStyle.body2.copyWith(
+            fontWeight: FontWeight.w600,
+            color: AppColors.c6A707C,
+          ),
+        ),
+      ),
     );
   }
 }

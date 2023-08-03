@@ -4,8 +4,8 @@ import 'package:ikea_store/utils/colors.dart';
 
 class SocialMediaButton extends StatelessWidget {
   SocialMediaButton({
-    super.key,
     required this.url,
+    super.key,
     this.onTap,
   });
 
@@ -17,18 +17,21 @@ class SocialMediaButton extends StatelessWidget {
       width: 105.w,
       height: 56.h,
       child: ElevatedButton(
-          onPressed: onTap,
-          style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  side: const BorderSide(
-                    color: AppColors.cDADADA,
-                  ))),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Image.asset(url),
-          )),
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(
+              color: AppColors.cDADADA,
+            ),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Image.asset(url),
+        ),
+      ),
     );
   }
 }

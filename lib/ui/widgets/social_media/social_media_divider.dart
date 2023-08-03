@@ -24,7 +24,9 @@ class Diveder extends StatelessWidget {
           child: Text(
             'Or Login with',
             style: AppStyle.body2.copyWith(
-                color: AppColors.c6A707C, fontWeight: FontWeight.w600),
+              color: AppColors.c6A707C,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         Expanded(

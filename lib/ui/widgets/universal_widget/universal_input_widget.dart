@@ -4,13 +4,14 @@ import 'package:ikea_store/utils/style.dart';
 
 class UniversalInputWidget extends StatefulWidget {
   UniversalInputWidget({
-    super.key,
     required this.hintText,
+    super.key,
     this.keyboardType = TextInputType.name,
     this.isSecure = false,
     this.controller,
     this.onChanged,
   });
+
   TextEditingController? controller;
   String hintText;
   TextInputType keyboardType;
@@ -23,6 +24,7 @@ class UniversalInputWidget extends StatefulWidget {
 
 class _UniversalInputWidgetState extends State<UniversalInputWidget> {
   late bool isVisible;
+
   @override
   void initState() {
     isVisible = widget.isSecure;
@@ -30,8 +32,7 @@ class _UniversalInputWidgetState extends State<UniversalInputWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return TextFormField(
+  Widget build(BuildContext context) => TextFormField(
         textInputAction: TextInputAction.next,
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         obscureText: isVisible,
@@ -49,16 +50,19 @@ class _UniversalInputWidgetState extends State<UniversalInputWidget> {
                     setState(() {});
                   },
                   icon:
-                      Icon(isVisible ? Icons.visibility_off : Icons.visibility))
+                      Icon(isVisible ? Icons.visibility_off : Icons.visibility),
+                )
               : null,
           hintStyle: AppStyle.body2.copyWith(
-              color: AppColors.c8391A1,
-              fontSize: 15,
-              fontWeight: FontWeight.w500),
+            color: AppColors.c8391A1,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
           fillColor: AppColors.cF7F8F9,
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: AppColors.cDADADA)),
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: AppColors.cDADADA),
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: AppColors.c1A73E8),
@@ -71,6 +75,6 @@ class _UniversalInputWidgetState extends State<UniversalInputWidget> {
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: AppColors.cC1C1C2),
           ),
-        ));
-  }
+        ),
+      );
 }
