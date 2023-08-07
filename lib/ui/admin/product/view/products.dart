@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ikea_store/models/product_model.dart';
 import 'package:ikea_store/service/auth_service/authentication.dart';
 import 'package:ikea_store/service/storage_service/db_firestore.dart';
+import 'package:ikea_store/ui/tab_screens/products/products_screen.dart';
 import 'package:ikea_store/utils/colors.dart';
 import 'package:ikea_store/utils/routes.dart';
-import 'package:ikea_store/utils/style.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({Key? key}) : super(key: key);
@@ -15,13 +14,14 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              AuthenticationService().logout();
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: AppColors.dark,
-            )),
+          onPressed: () {
+            AuthenticationService().logout();
+          },
+          icon: const Icon(
+            Icons.logout,
+            color: AppColors.dark,
+          ),
+        ),
         title: const Text('Products'),
         actions: [
           IconButton(
@@ -66,38 +66,46 @@ class ProductsPage extends StatelessWidget {
                             arguments: product,
                           );
                         },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Hero(
-                                tag: product.id,
-                                child: Container(
-                                  width: double.infinity,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration:
-                                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                                  child: CachedNetworkImage(
-                                    imageUrl: product.imageUrl,
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment.bottomCenter,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              product.name,
-                              style: AppStyle.body2.copyWith(color: AppColors.c303030),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              "\$ ${product.price}",
-                              style: AppStyle.body2
-                                  .copyWith(fontWeight: FontWeight.w700, color: AppColors.c303030),
-                            ),
-                          ],
-                        ),
+                        // child: Column(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     Expanded(
+                        //       child: Hero(
+                        //         tag: product.id,
+                        //         child: Container(
+                        //           width: double.infinity,
+                        //           clipBehavior: Clip.antiAlias,
+                        //           decoration: BoxDecoration(
+                        //             image: const DecorationImage(
+                        //               image: AssetImage(AppImages.background1),
+                        //               fit: BoxFit.cover,
+                        //             ),
+                        //             borderRadius: BorderRadius.circular(10),
+                        //           ),
+                        //           child: CachedNetworkImage(
+                        //             imageUrl: product.imageUrl,
+                        //             fit: BoxFit.cover,
+                        //             alignment: Alignment.bottomCenter,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(height: 10),
+                        //     Text(
+                        //       product.name,
+                        //       style: AppStyle.body2.copyWith(color: AppColors.c303030),
+                        //       maxLines: 2,
+                        //       overflow: TextOverflow.ellipsis,
+                        //     ),
+                        //     const SizedBox(height: 5),
+                        //     Text(
+                        //       "\$ ${product.price.toStringAsFixed(2)}",
+                        //       style: AppStyle.body2
+                        //           .copyWith(fontWeight: FontWeight.w700, color: AppColors.c303030),
+                        //     ),
+                        //   ],
+                        // ),
+                        child: ProductWiget(product: product),
                       );
                     },
                   );

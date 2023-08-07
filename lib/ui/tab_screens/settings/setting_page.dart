@@ -7,8 +7,8 @@ import 'package:ikea_store/utils/routes.dart';
 import 'package:ikea_store/utils/style.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class SettingPage extends StatelessWidget {
+  const SettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,58 +26,58 @@ class ProfileScreen extends StatelessWidget {
           )
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.all(20),
-            sliver: SliverToBoxAdapter(
-              child: Row(
-                children: [
-                  Container(
-                    height: 80,
-                    width: 80,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(shape: BoxShape.circle),
-                    child: CircleAvatar(
-                      child: (provider.user?.photoURL == null)
-                          ? null
-                          : Image.network(
-                              provider.user!.photoURL!,
-                            ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        provider.user?.displayName ?? '',
-                        style: AppStyle.title,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        provider.user?.email ?? '',
-                        style: AppStyle.body2.copyWith(color: AppColors.c808080),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              SettingCardWidget(
-                title: 'Setting',
-                subtitle: 'Notification, Password, FAQ, Contact',
-                onTap: () {
-                  Navigator.pushNamed(context, RouteNames.setting);
-                },
-              ),
-            ]),
-          )
-        ],
-      ),
+      // body: CustomScrollView(
+      //   slivers: [
+      //     SliverPadding(
+      //       padding: const EdgeInsets.all(20),
+      //       sliver: SliverToBoxAdapter(
+      //         child: Row(
+      //           children: [
+      //             Container(
+      //               height: 80,
+      //               width: 80,
+      //               clipBehavior: Clip.antiAlias,
+      //               decoration: const BoxDecoration(shape: BoxShape.circle),
+      //               child: CircleAvatar(
+      //                 child: (provider.user?.photoURL == null)
+      //                     ? null
+      //                     : Image.network(
+      //                         provider.user!.photoURL!,
+      //                       ),
+      //               ),
+      //             ),
+      //             const SizedBox(width: 20),
+      //             Column(
+      //               crossAxisAlignment: CrossAxisAlignment.start,
+      //               children: [
+      //                 Text(
+      //                   provider.user?.displayName ?? '',
+      //                   style: AppStyle.title,
+      //                 ),
+      //                 const SizedBox(height: 5),
+      //                 Text(
+      //                   provider.user?.email ?? '',
+      //                   style: AppStyle.body2.copyWith(color: AppColors.c808080),
+      //                 ),
+      //               ],
+      //             )
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //     SliverList(
+      //       delegate: SliverChildListDelegate([
+      //         SettingCardWidget(
+      //           title: 'Setting',
+      //           subtitle: 'Notification, Password, FAQ, Contact',
+      //           onTap: () {
+      //             Navigator.pushNamed(context, RouteNames.setting);
+      //           },
+      //         ),
+      //       ]),
+      //     )
+      //   ],
+      // ),
     );
   }
 }

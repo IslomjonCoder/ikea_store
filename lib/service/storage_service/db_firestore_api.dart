@@ -14,12 +14,7 @@ abstract class DbApi {
 
   Stream<List<CategoryModel>> getCategoryList();
 
-  Future<Result<List<CategoryModel>>> getCategoriesListSingle();
-
   // --------------------- Product -------------------------------------
-  // Future<Result<ProductModel>> getProductById(ProductModel product);
-
-  Stream<Result<List<ProductModel>>> getProductsByCategory(CategoryModel category);
 
   Future<Result> addProduct(ProductModel product, File imageFile);
 
@@ -28,4 +23,10 @@ abstract class DbApi {
   Future<Result> deleteProduct(ProductModel product);
 
   Stream<List<ProductModel>> getProductList();
+
+  // --------------------- Cart -------------------------------------
+
+  Future<Result> addToCard({required String productID, required String userID, required int count});
+
+  // Stream<List<CartModel>> getCartProducts({required String userID});
 }

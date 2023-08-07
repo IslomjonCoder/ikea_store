@@ -43,8 +43,7 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
     CategoryModel updatedCategory = widget.category.copyWith(
       name: updatedName,
     );
-    Provider.of<ProductProvider>(context, listen: false)
-        .updateCategory(context, updatedCategory, _imageFile);
+    Provider.of<ProductProvider>(context, listen: false).updateCategory(context, updatedCategory, _imageFile);
     // print(updatedProduct.toJson());
     // Navigator.pop(context); // Navigate back to the previous screen after saving changes
   }
