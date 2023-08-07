@@ -24,13 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text('Products'),
           ),
           FlashyTabBarItem(
+            icon: const Icon(Icons.shopping_basket),
+            title: const Text('Cart'),
+          ),
+          FlashyTabBarItem(
             icon: const Icon(Icons.bookmark),
             title: const Text('Favourites'),
           ),
-          // FlashyTabBarItem(
-          //   icon: const Icon(Icons.settings),
-          //   title: const Text('Settings'),
-          // ),
+          FlashyTabBarItem(
+            icon: const Icon(Icons.settings),
+            title: const Text('Settings'),
+          ),
           // FlashyTabBarItem(
           //   icon: const Icon(Icons.person),
           //   title: const Text('Admin'),

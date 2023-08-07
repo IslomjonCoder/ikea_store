@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ikea_store/models/product_model.dart';
@@ -52,10 +53,18 @@ class ProductDetailScreen extends StatelessWidget {
               tag: product.id,
               child: AspectRatio(
                 aspectRatio: 0.8,
-                child: Image.network(
-                  product.imageUrl,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.center,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                            AppImages.background1,
+                          ),
+                          fit: BoxFit.cover)),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                    imageUrl: product.imageUrl,
+                  ),
                 ),
               ),
             ),

@@ -5,7 +5,7 @@ import 'package:ikea_store/models/category_model.dart';
 import 'package:ikea_store/models/product_model.dart';
 import 'package:ikea_store/service/storage_service/db_firestore.dart';
 import 'package:ikea_store/utils/ui_utils/loadings.dart';
-import 'package:uuid/uuid.dart';
+import 'package:ikea_store/utils/uid.dart';
 
 class ProductsState {
   static List<ProductModel> products = [];
@@ -13,10 +13,9 @@ class ProductsState {
 
 class ProductProvider extends ChangeNotifier {
   final DbFirestoreService _dbFirestoreService = DbFirestoreService();
-  Uuid uuid = const Uuid();
 
   addProduct(BuildContext context, ProductModel product, File imageFile) async {
-    product = product.copyWith(id: uuid.v4());
+    product = product.copyWith(id: UidGenerator.generateUID());
     LoaderDialog.showLoadingDialog(context);
     await _dbFirestoreService.addProduct(product, imageFile);
     LoaderDialog.hideLoadingDialog(context);
@@ -24,7 +23,7 @@ class ProductProvider extends ChangeNotifier {
   }
 
   addCategory(BuildContext context, CategoryModel category, File imageFile) async {
-    category = category.copyWith(id: uuid.v4());
+    category = category.copyWith(id: UidGenerator.generateUID());
     LoaderDialog.showLoadingDialog(context);
     await _dbFirestoreService.addCategory(category, imageFile);
     LoaderDialog.hideLoadingDialog(context);

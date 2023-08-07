@@ -19,7 +19,7 @@ class LoaderDialog {
     );
   }
 
-  static void hideLoadingDialog(BuildContext context) {
+  static Future<void> hideLoadingDialog(BuildContext context) async {
     Navigator.of(context).pop(); // Pop the loading dialog
   }
 

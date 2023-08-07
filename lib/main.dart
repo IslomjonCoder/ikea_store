@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikea_store/provider/auth_provider.dart';
 import 'package:ikea_store/provider/home_provider.dart';
+import 'package:ikea_store/provider/products_provider.dart';
 import 'package:ikea_store/ui/admin/product/controller/products_controller.dart';
 import 'package:ikea_store/ui/router.dart';
 import 'package:ikea_store/utils/colors.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => HomeScreenProvider()),
+        ChangeNotifierProvider(create: (context) => ProductsProvider()),
         ChangeNotifierProvider(create: (context) => ProductProvider()),
       ],
       child: ScreenUtilInit(

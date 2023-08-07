@@ -12,6 +12,9 @@ import 'package:ikea_store/ui/auth/sign%20in/login_screen.dart';
 import 'package:ikea_store/ui/auth/sign%20up/sign_up_screen.dart';
 import 'package:ikea_store/ui/auth/welcome/welcome_screen.dart';
 import 'package:ikea_store/ui/home_screen.dart';
+import 'package:ikea_store/ui/subscreens/create_review_page.dart';
+import 'package:ikea_store/ui/subscreens/rating_review_page.dart';
+import 'package:ikea_store/ui/tab_screens/products/product_detail.dart';
 
 class RouteNames {
   static const String login = "/categories";
@@ -19,6 +22,8 @@ class RouteNames {
   static const String welcome = "/favourites";
   static const String home = "/home";
   static const String setting = "/setting";
+  static const String review = "/review";
+  static const String addReview = "/review_add";
   static const String admin = "/admin";
 
   static const String detailProduct = "/detail_product";
@@ -52,6 +57,14 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => const AddCategoryPage(),
         );
+      case RouteNames.addReview:
+        return MaterialPageRoute(
+          builder: (context) => CreateReviewPage(product: settings.arguments as ProductModel),
+        );
+      case RouteNames.review:
+        return MaterialPageRoute(
+          builder: (context) => ReviewPage(product: settings.arguments as ProductModel),
+        );
       case RouteNames.editProduct:
         return MaterialPageRoute(
           builder: (context) => EditProductPage(product: settings.arguments as ProductModel),
@@ -63,7 +76,7 @@ class AppRoutes {
 
       case RouteNames.detailProduct:
         return MaterialPageRoute(
-          builder: (context) => ProductDetailScreen(product: settings.arguments as ProductModel),
+          builder: (context) => ProductDetailPage(product: settings.arguments as ProductModel),
         );
       case RouteNames.admin:
         return MaterialPageRoute(builder: (context) => const AdminScreen());
