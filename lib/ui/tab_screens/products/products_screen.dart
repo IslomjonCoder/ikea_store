@@ -75,11 +75,11 @@ class _ProductsScreenState extends State<ProductsScreen> with SingleTickerProvid
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
                   provider.setCategory = index;
-                  // pageController.animateToPage(
-                  //   provider.selectedCategory,
-                  //   duration: const Duration(milliseconds: 700),
-                  //    curve: Curves.linear,
-                  // );
+                  pageController.animateToPage(
+                    provider.selectedCategory,
+                    duration: const Duration(milliseconds: 700),
+                    curve: Curves.linear,
+                  );
                 },
                 child: Column(
                   children: [
